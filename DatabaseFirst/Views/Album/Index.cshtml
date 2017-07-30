@@ -1,0 +1,32 @@
+﻿@model IEnumerable<DatabaseFirst.tblAlbums>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
+
+    <ul>
+        @foreach (var item in @Model)
+        {
+
+            <li id="demo">
+                @Html.ActionLink(item.Name, "Index","Track", new { itemId = item.Id}, null)
+
+            </li>
+
+        }
+    </ul>
+
+</table>
+

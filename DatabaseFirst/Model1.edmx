@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DBFirstModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblAlbums">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblTracks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="AlbumID" Type="int" />
+        </EntityType>
+        <Association Name="FK__tblTracks__Album__1273C1CD">
+          <End Role="tblAlbums" Type="Self.tblAlbums" Multiplicity="0..1" />
+          <End Role="tblTracks" Type="Self.tblTracks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAlbums">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblTracks">
+              <PropertyRef Name="AlbumID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBFirstModelStoreContainer">
+          <EntitySet Name="tblAlbums" EntityType="Self.tblAlbums" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblTracks" EntityType="Self.tblTracks" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__tblTracks__Album__1273C1CD" Association="Self.FK__tblTracks__Album__1273C1CD">
+            <End Role="tblAlbums" EntitySet="tblAlbums" />
+            <End Role="tblTracks" EntitySet="tblTracks" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBFirstModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblAlbums">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblTracks" Relationship="Self.FK__tblTracks__Album__1273C1CD" FromRole="tblAlbums" ToRole="tblTracks" />
+        </EntityType>
+        <EntityType Name="tblTracks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AlbumID" Type="Int32" />
+          <NavigationProperty Name="tblAlbums" Relationship="Self.FK__tblTracks__Album__1273C1CD" FromRole="tblTracks" ToRole="tblAlbums" />
+        </EntityType>
+        <Association Name="FK__tblTracks__Album__1273C1CD">
+          <End Role="tblAlbums" Type="Self.tblAlbums" Multiplicity="0..1" />
+          <End Role="tblTracks" Type="Self.tblTracks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAlbums">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblTracks">
+              <PropertyRef Name="AlbumID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBFirstEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblAlbums" EntityType="Self.tblAlbums" />
+          <EntitySet Name="tblTracks" EntityType="Self.tblTracks" />
+          <AssociationSet Name="FK__tblTracks__Album__1273C1CD" Association="Self.FK__tblTracks__Album__1273C1CD">
+            <End Role="tblAlbums" EntitySet="tblAlbums" />
+            <End Role="tblTracks" EntitySet="tblTracks" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBFirstModelStoreContainer" CdmEntityContainer="DBFirstEntities">
+          <EntitySetMapping Name="tblAlbums">
+            <EntityTypeMapping TypeName="DBFirstModel.tblAlbums">
+              <MappingFragment StoreEntitySet="tblAlbums">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblTracks">
+            <EntityTypeMapping TypeName="DBFirstModel.tblTracks">
+              <MappingFragment StoreEntitySet="tblTracks">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AlbumID" ColumnName="AlbumID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

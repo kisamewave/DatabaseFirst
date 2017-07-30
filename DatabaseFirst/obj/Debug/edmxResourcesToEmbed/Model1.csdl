@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBFirstModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tblAlbums">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblTracks" Relationship="Self.FK__tblTracks__Album__1273C1CD" FromRole="tblAlbums" ToRole="tblTracks" />
+  </EntityType>
+  <EntityType Name="tblTracks">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AlbumID" Type="Int32" />
+    <NavigationProperty Name="tblAlbums" Relationship="Self.FK__tblTracks__Album__1273C1CD" FromRole="tblTracks" ToRole="tblAlbums" />
+  </EntityType>
+  <Association Name="FK__tblTracks__Album__1273C1CD">
+    <End Role="tblAlbums" Type="Self.tblAlbums" Multiplicity="0..1" />
+    <End Role="tblTracks" Type="Self.tblTracks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblAlbums">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblTracks">
+        <PropertyRef Name="AlbumID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DBFirstEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblAlbums" EntityType="Self.tblAlbums" />
+    <EntitySet Name="tblTracks" EntityType="Self.tblTracks" />
+    <AssociationSet Name="FK__tblTracks__Album__1273C1CD" Association="Self.FK__tblTracks__Album__1273C1CD">
+      <End Role="tblAlbums" EntitySet="tblAlbums" />
+      <End Role="tblTracks" EntitySet="tblTracks" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

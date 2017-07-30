@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DBFirstModelStoreContainer" CdmEntityContainer="DBFirstEntities">
+    <EntitySetMapping Name="tblAlbums">
+      <EntityTypeMapping TypeName="DBFirstModel.tblAlbums">
+        <MappingFragment StoreEntitySet="tblAlbums">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblTracks">
+      <EntityTypeMapping TypeName="DBFirstModel.tblTracks">
+        <MappingFragment StoreEntitySet="tblTracks">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="AlbumID" ColumnName="AlbumID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

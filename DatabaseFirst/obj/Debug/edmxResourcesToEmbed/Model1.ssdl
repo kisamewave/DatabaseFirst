@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBFirstModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblAlbums">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblTracks">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="AlbumID" Type="int" />
+  </EntityType>
+  <Association Name="FK__tblTracks__Album__1273C1CD">
+    <End Role="tblAlbums" Type="Self.tblAlbums" Multiplicity="0..1" />
+    <End Role="tblTracks" Type="Self.tblTracks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblAlbums">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblTracks">
+        <PropertyRef Name="AlbumID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DBFirstModelStoreContainer">
+    <EntitySet Name="tblAlbums" EntityType="Self.tblAlbums" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblTracks" EntityType="Self.tblTracks" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__tblTracks__Album__1273C1CD" Association="Self.FK__tblTracks__Album__1273C1CD">
+      <End Role="tblAlbums" EntitySet="tblAlbums" />
+      <End Role="tblTracks" EntitySet="tblTracks" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
